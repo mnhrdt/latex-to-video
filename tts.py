@@ -78,12 +78,12 @@ def run(text, fileout, noise=0):
     for l in text.split('\n'):
         if not l:
             continue
-        if l == '%>pause':
+        if l == '%TTS pause':
             audios.append(np.zeros(int(rate * 0.8)))
-        elif l == '%>shortpause':
+        elif l == '%TTS shortpause':
             audios.append(np.zeros(int(rate * 0.15)))
         else:
-            l = l.replace('%> ', '')
+            l = l.replace('%TTS - ', '')
             print(l)
             audio = tts(model, l, TTS_CONFIG, use_cuda, ap, use_gl=False)
             audios.append(audio)

@@ -27,23 +27,23 @@ preset='slow'
 def main(tex, pdf, vid, fast=False, tempo=1.0):
     lines = open(tex).readlines()
     lines = [l.strip() for l in lines]
-    lines = list(filter(lambda l: '%>' in l, lines))
+    lines = list(filter(lambda l: '%TTS' in l, lines))
     cur = -1
     slideid = -1
     frames = {}
     slide_per_frame = {}
     for l in lines:
-        if l == '%>next':
+        if l == '%TTS next':
             cur += 1
             slideid += 1
             frames[cur] = []
             slide_per_frame[cur] = slideid
-        elif l == '%>prev':
+        elif l == '%TTS prev':
             cur += 1
             slideid -= 1
             frames[cur] = []
             slide_per_frame[cur] = slideid
-        elif l == '%>stop':
+        elif l == '%TTS stop':
             break
         else:
             frames[cur].append(l)

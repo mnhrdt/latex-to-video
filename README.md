@@ -59,7 +59,7 @@ Try the demo: (**recommended**)
 ```bash
 $ cd demo
 $ latexmk -pdf main.tex
-$ docker run --rm -u (id -u) -v (pwd):/data latex-to-video main.tex main.pdf main.mp4
+$ docker run --rm -u $(id -u) -v $(pwd):/data latex-to-video main.tex main.pdf main.mp4
 $ vlc main.mp4
 ```
 
@@ -78,10 +78,12 @@ $ vlc main.mp4
 
 ```
 syntax:
-    %>next        -> go to next slide
-    %>pause       -> 500ms pause
-    %>shortpause  -> 100ms pause
-    %> <text to be speeched>
+    %TTS next             -> go to next slide
+    %TTS pause            -> 500ms pause
+    %TTS shortpause       -> 100ms pause
+    %TTS - Hello, world!  -> say "Hello, world!" on this slide
+    %TTS prev             -> re-start time on this slide (useful for overlays)
+    %TTS stop             -> stop processing directives (like \end{document})
 ```
 
 Warning: do not use sentence that would be too long or the TTS might fail.
